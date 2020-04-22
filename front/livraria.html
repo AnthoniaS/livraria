@@ -20,7 +20,7 @@
         <!-- Menu Superior -->
         <nav class="navbar navbar-dark bg-dark">
             <a class="navbar-brand" href="#">
-                
+                <img src="livraria-icone.png" width="30" height="30" class="d-inline-block align-top" alt="Livraria">
                 Meus Livros 
             </a>
             <nav class="navbar navbar-dark bg-dark">
@@ -31,6 +31,7 @@
                 </form>
             </nav>
         </nav>
+        <img src="livraria.jpg" alt="livraria" class="img-fluid mx-auto d-block w-100 mt-2">
         <!-- Listagem -->
         <div class="col-sm-16">
             <div class="card">
@@ -39,30 +40,35 @@
                         [Filtro: '{{filtro}}']
                     </span>
                 </h5>
+                
                 <div class="card-body">
                     <table class="table table-hover table-sm">
                         <thead>
                             <tr>
                                 <th>Cód.</th>
-                                <th>Título</th>
-                                <th>Categoria</th>
+                                <th>Nome</th>
                                 <th>Autor</th>
+                                <th>Edição</th>
+                                <th>Ano</th>
+                                <th>Páginas</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="filme in filmes" v-bind:key="filme.id">
-                                <td>{{filme.id}}</td>
-                                <td>{{filme.titulo}}</td>
-                                <td>{{filme.autor}}</td>
-                                <td>{{filme.autor}}</td>
+                            <tr v-for="livro in livros" v-bind:key="livro.id">
+                                <td>{{livro.id}}</td>
+                                <td>{{livro.nome}}</td>
+                                <td>{{livro.autor}}</td>
+                                <td>{{livro.edicao}}</td>
+                                <td>{{livro.ano}}</td>
+                                <td>{{livro.paginas}}</td>
                                 
                                 <td>
-                                    <button class="btn btn-warning btn-sm" title="Alterar" @click="editar(filme.id)">
+                                    <button class="btn btn-warning btn-sm" title="Alterar" @click="editar(livro.id)">
                                         <i class="far fa-edit"></i>
                                     </button>
                                     <button class="btn btn-danger btn-sm" title="Excluir"
-                                        @click="excluir(filme.id, filme.titulo)">
+                                        @click="excluir(livro.id, livro.nome)">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
 
@@ -90,18 +96,26 @@
                         <div class="card-body">
                             <form @submit.prevent="salvar">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="titulo" ref="titulo"
-                                        v-model="filme.titulo" placeholder="Título do Livro">
+                                    <input type="text" class="form-control" name="titulo" ref="nome"
+                                        v-model="livro.nome" placeholder="Nome do Livro">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="categoria" v-model="filme.categoria"
-                                        placeholder="Categoria">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="autor" v-model="filme.autor"
+                                    <input type="text" class="form-control" name="categoria" v-model="livro.autor"
                                         placeholder="Autor">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="autor" v-model="livro.edicao"
+                                        placeholder="Edição">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="ano" v-model="livro.ano"
+                                        placeholder="Ano">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="paginas" v-model="livro.paginas"
+                                        placeholder="Páginas">
                                 </div>
 
                                 <div class="btn-group w-100" role="group">
@@ -121,7 +135,7 @@
         </div>
     </div>
 
-    <script src="filmes.js"></script>
+    <script src="livraria.js"></script>
 </body>
 
 </html>
